@@ -22,6 +22,7 @@ public class AsIntStream implements IntStream {
         q = new Queue<>(val);
         streamItr = q.iterator();
     }
+
     private AsIntStream(Iterator<Integer> itr) {
         this.streamItr = itr;
     }
@@ -90,7 +91,7 @@ public class AsIntStream implements IntStream {
         checkTerminated();
         long size = 0;
         while (streamItr.hasNext()) {
-            size ++;
+            size++;
             streamItr.next();
         }
         closed = true;
@@ -112,9 +113,10 @@ public class AsIntStream implements IntStream {
     @Override
     public IntStream filter(IntPredicate predicate) {
         checkTerminated();
-        Iterator <Integer> iter = this.streamItr;
+        Iterator<Integer> iter = this.streamItr;
         return new AsIntStream(new Iterator<Integer>() {
             private Integer nextFiltered = null;
+
             @Override
             public boolean hasNext() {
                 if (nextFiltered != null) {
@@ -156,7 +158,7 @@ public class AsIntStream implements IntStream {
     @Override
     public IntStream map(IntUnaryOperator mapper) {
         checkTerminated();
-        Iterator <Integer> iter = this.streamItr;
+        Iterator<Integer> iter = this.streamItr;
         return new AsIntStream(new Iterator<Integer>() {
             @Override
             public boolean hasNext() {
@@ -181,6 +183,7 @@ public class AsIntStream implements IntStream {
 
         return new AsIntStream(new Iterator<Integer>() {
             private Iterator<Integer> tempItr = new Queue<Integer>().iterator();
+
             @Override
             public boolean hasNext() {
                 if (!tempItr.hasNext()) {

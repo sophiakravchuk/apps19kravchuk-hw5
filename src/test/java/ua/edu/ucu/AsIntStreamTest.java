@@ -29,6 +29,7 @@ public class AsIntStreamTest {
         int[] result = intStream.toArray();
         assertArrayEquals(expResult, result);
     }
+
     @Test
     public void testOfEmpty() {
         IntStream st = AsIntStream.of(emptyArr);
@@ -63,13 +64,13 @@ public class AsIntStreamTest {
         assertEquals(expResult, result);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testMaxEmpty() {
         IntStream st = AsIntStream.of(emptyArr);
         st.max();
     }
 
-    @Test (expected = TheStreamIsClosed.class)
+    @Test(expected = TheStreamIsClosed.class)
     public void testMaxTerminalException() {
         IntStream intStream = AsIntStream.of(intArr);
         intStream.max();
@@ -83,13 +84,13 @@ public class AsIntStreamTest {
         assertEquals(expResult, result);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testMinEmpty() {
         IntStream st = AsIntStream.of(emptyArr);
         st.min();
     }
 
-    @Test (expected = TheStreamIsClosed.class)
+    @Test(expected = TheStreamIsClosed.class)
     public void testMinTerminalException() {
         IntStream intStream = AsIntStream.of(intArr);
         intStream.min();
@@ -111,7 +112,7 @@ public class AsIntStreamTest {
         assertEquals(expResult, result);
     }
 
-    @Test (expected = TheStreamIsClosed.class)
+    @Test(expected = TheStreamIsClosed.class)
     public void testCountTerminalException() {
         IntStream intStream = AsIntStream.of(intArr);
         intStream.count();
@@ -125,13 +126,13 @@ public class AsIntStreamTest {
         assertEquals(expResult, result);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testSumEmpty() {
         IntStream st = AsIntStream.of(emptyArr);
         st.sum();
     }
 
-    @Test (expected = TheStreamIsClosed.class)
+    @Test(expected = TheStreamIsClosed.class)
     public void testSumTerminalException() {
         IntStream intStream = AsIntStream.of(intArr);
         intStream.sum();
@@ -143,7 +144,7 @@ public class AsIntStreamTest {
         IntStream intStForEach = AsIntStream.of(intArr);
         IntBinaryOperator op = new IntBinaryOperator() {
             @Override
-            public int apply(int left, int right){
+            public int apply(int left, int right) {
                 return left * right;
             }
         };
@@ -158,7 +159,7 @@ public class AsIntStreamTest {
         IntStream st = AsIntStream.of(emptyArr);
         IntBinaryOperator op = new IntBinaryOperator() {
             @Override
-            public int apply(int left, int right){
+            public int apply(int left, int right) {
                 return left * right;
             }
         };
@@ -167,18 +168,19 @@ public class AsIntStreamTest {
         assertEquals(expResult, result);
     }
 
-    @Test (expected = TheStreamIsClosed.class)
+    @Test(expected = TheStreamIsClosed.class)
     public void testReduceTerminalException() {
         IntStream intStream = AsIntStream.of(intArr);
         IntBinaryOperator op = new IntBinaryOperator() {
             @Override
-            public int apply(int left, int right){
+            public int apply(int left, int right) {
                 return left * right;
             }
         };
         intStream.reduce(4, op);
         intStream.reduce(4, op);
     }
+
     @Test
     public void testFilter() {
         IntStream intStream = AsIntStream.of(-1, 0, 1, 2, 3);
